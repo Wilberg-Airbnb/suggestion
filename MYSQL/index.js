@@ -4,7 +4,7 @@ const {password} = require('./config.js')
 var dbConnection = mysql.createConnection({
   user:'root',
   password:password,
-  database:'airbnb'
+  database:'airbnb2'
 });
 
 dbConnection.connect(err =>{
@@ -12,7 +12,7 @@ dbConnection.connect(err =>{
     console.log(err);
     return;
   } else {
-    console.log('mysql database connected');
+    console.log('mysql database connected to airbb2');
   }
 })
 

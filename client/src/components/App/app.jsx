@@ -49,6 +49,7 @@ const SlideButton = styled.button`
 `;
 
 
+
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -59,7 +60,8 @@ class App extends React.Component {
       listingId : this.requestedId,
       suggestions:[],
       currentPage:1,
-      todosPerPage:4
+      todosPerPage:4,
+      currentImageIndex: 0
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -68,13 +70,19 @@ class App extends React.Component {
 
   handleClick(direction){
     if(direction ==="left"){
-      this.setState(prevState =>({
-        currentPage: prevState.currentPage -1
-      }))
+      if(this.state.currentPage >1){
+        this.setState(prevState =>({
+          currentPage: prevState.currentPage -1
+        }))
+      }
     }else{
-      this.setState(prevState =>({
-        currentPage: prevState.currentPage +1
-      }))
+
+      if(this.state.currentPage < 3){
+        this.setState(prevState =>({
+          currentPage: prevState.currentPage +1
+        }))
+      }
+      
     }
     
   }
@@ -84,7 +92,7 @@ class App extends React.Component {
       .then(res =>{
       this.setState({
         suggestions: res.data
-      })
+      },()=>{console.log(this.state.suggestions)})
       })
       .catch(err =>{
       console.log(err);
@@ -111,11 +119,13 @@ class App extends React.Component {
               </Pagination>
           </NavContainer>
           <SuggestionsContainer>
+
             {
               currentSuggestions.map((suggestion,key)=>{
                 return <Suggestion suggestion ={suggestion} index = {key} key={key}></Suggestion>
               })
             }
+
           </SuggestionsContainer>
 
         </AppContainer>
