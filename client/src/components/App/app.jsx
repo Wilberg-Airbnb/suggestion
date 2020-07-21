@@ -18,9 +18,21 @@ const NavContainer = styled.div`
 `;
 
 const SuggestionsContainer = styled.div`
-  display:flex;
-  overflow:auto;
+  display:grid;
+  grid-template-columns: auto auto auto auto;
+  justifycontent: space-between;
+  width:100%;
+  max-width:100%
 `;
+
+// const SuggestionsContainer = styled.div`
+//   display:flex;
+//   overflow:auto;
+
+//   grid-template-columns: auto auto auto auto;
+//   justifycontent: space-between;
+//   width:100%;
+// `;
 
 const MorePlace = styled.h2`
   display:block;
@@ -40,8 +52,9 @@ const SlideButton = styled.button`
   font-size:16px;
   margin: 10px 5px;
   border-radius:50%;
-  hegith:80px;
-  width:80px
+  height:32px;
+  width:32px;
+  box-shadow: 0.5px 0.5px 0.5px 1px 	#A9A9A9;
 
   &:hover{
     cursor:pointer;
@@ -113,7 +126,7 @@ class App extends React.Component {
           <NavContainer>
             <MorePlace>More places to stay</MorePlace>
             <Pagination>
-              {`${this.state.currentPage}/3  `} 
+              {`${this.state.currentPage} / 3        `} 
               <SlideButton onClick={() =>{this.handleClick('left')}}>{`<`}</SlideButton>
               <SlideButton onClick={() =>{this.handleClick('right')}}>{`>`}</SlideButton>
               </Pagination>
