@@ -8,7 +8,8 @@
     "server": "nodemon server/server.js",
     "test": "jest --watch *.js",
     "enzymetest": "react-scripts test --env=jsdom",
-    "seed": "node server/seed.js"
+    "seed": "node server/seed.js",
+    "docker": "npm run seed & npm run server & npm run react"
   },
   "author": "",
   "license": "ISC",
@@ -18,9 +19,11 @@
     "body-parser": "^1.19.0",
     "bootstrap": "^4.5.0",
     "chance": "^1.1.6",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^4.1.0",
     "jquery": "^3.5.1",
+    "jest-styled-components": "^7.0.2",
     "mongoose": "^5.9.19",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
@@ -44,7 +47,9 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^26.1.0",
     "jest-transform-stub": "^2.0.0",
+    "react-test-renderer": "^16.13.1",
     "style-loader": "^1.2.1",
+    "styled-components-test-utils": "^1.0.2",
     "supertest": "^4.0.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11"

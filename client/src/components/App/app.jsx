@@ -67,7 +67,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
 
-    this.requestedId = JSON.parse(window.location.href.split('/')[3]);
+    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-1]);
 
     this.state ={
       listingId : this.requestedId,
