@@ -101,8 +101,10 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:8081/api/suggestions/${this.state.listingId}`)
+
+    axios.get(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
       .then(res =>{
+        console.log('got array')
       this.setState({
         suggestions: res.data
       },()=>{console.log(this.state.suggestions)})
@@ -110,6 +112,7 @@ class App extends React.Component {
       .catch(err =>{
       console.log(err);
     })
+
   }
   
 

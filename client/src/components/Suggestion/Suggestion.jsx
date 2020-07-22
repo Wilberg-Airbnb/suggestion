@@ -115,7 +115,6 @@ class Suggestion extends React.Component {
 
     render(){
         const {suggestion,index} = this.props;
-        console.log(index)
         return (
             <SuggestionContainer index = {index}>
 

@@ -58,6 +58,7 @@ app.get('/api/suggestions/:listingId',(req,res) =>{
 app.get('/api/reviews',(req,res) =>{
   if(req.query.array){
     var array = JSON.parse(req.query.array);
+    console.log(array);
 
     var averageReviews = [];
 
