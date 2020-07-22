@@ -18,9 +18,21 @@ const NavContainer = styled.div`
 `;
 
 const SuggestionsContainer = styled.div`
-  display:flex;
-  overflow:auto;
+  display:grid;
+  grid-template-columns: auto auto auto auto;
+  justifycontent: space-between;
+  width:100%;
+  max-width:100%
 `;
+
+// const SuggestionsContainer = styled.div`
+//   display:flex;
+//   overflow:auto;
+
+//   grid-template-columns: auto auto auto auto;
+//   justifycontent: space-between;
+//   width:100%;
+// `;
 
 const MorePlace = styled.h2`
   display:block;
@@ -40,8 +52,9 @@ const SlideButton = styled.button`
   font-size:16px;
   margin: 10px 5px;
   border-radius:50%;
-  hegith:80px;
-  width:80px
+  height:32px;
+  width:32px;
+  box-shadow: 0.5px 0.5px 0.5px 1px 	#A9A9A9;
 
   &:hover{
     cursor:pointer;
@@ -49,17 +62,19 @@ const SlideButton = styled.button`
 `;
 
 
+
 class App extends React.Component {
   constructor(props){
     super(props);
 
-    this.requestedId = JSON.parse(window.location.href.split('/')[3]);
+    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-1]);
 
     this.state ={
       listingId : this.requestedId,
       suggestions:[],
       currentPage:1,
-      todosPerPage:4
+      todosPerPage:4,
+      currentImageIndex: 0
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -68,27 +83,36 @@ class App extends React.Component {
 
   handleClick(direction){
     if(direction ==="left"){
-      this.setState(prevState =>({
-        currentPage: prevState.currentPage -1
-      }))
+      if(this.state.currentPage >1){
+        this.setState(prevState =>({
+          currentPage: prevState.currentPage -1
+        }))
+      }
     }else{
-      this.setState(prevState =>({
-        currentPage: prevState.currentPage +1
-      }))
+
+      if(this.state.currentPage < 3){
+        this.setState(prevState =>({
+          currentPage: prevState.currentPage +1
+        }))
+      }
+      
     }
     
   }
 
   componentDidMount(){
-    axios.get(`http://localhost:8081/api/suggestions/${this.state.listingId}`)
+
+    axios.get(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
       .then(res =>{
+        console.log('got array')
       this.setState({
         suggestions: res.data
-      })
+      },()=>{console.log(this.state.suggestions)})
       })
       .catch(err =>{
       console.log(err);
     })
+
   }
   
 
@@ -105,17 +129,19 @@ class App extends React.Component {
           <NavContainer>
             <MorePlace>More places to stay</MorePlace>
             <Pagination>
-              {`${this.state.currentPage}/3  `} 
+              {`${this.state.currentPage} / 3        `} 
               <SlideButton onClick={() =>{this.handleClick('left')}}>{`<`}</SlideButton>
               <SlideButton onClick={() =>{this.handleClick('right')}}>{`>`}</SlideButton>
               </Pagination>
           </NavContainer>
           <SuggestionsContainer>
+
             {
               currentSuggestions.map((suggestion,key)=>{
                 return <Suggestion suggestion ={suggestion} index = {key} key={key}></Suggestion>
               })
             }
+
           </SuggestionsContainer>
 
         </AppContainer>
