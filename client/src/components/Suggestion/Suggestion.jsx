@@ -5,6 +5,7 @@ import axios from 'axios';
 
 
 const ImageBox = styled.div`
+    height:300px;
 
 }
 
@@ -14,16 +15,16 @@ const Superhost = styled.div`
     background:white;
     border-style:solid;
     border-color:black;
-    width:20px;
-    height:8px;
     padding:3px;
     border-radius:5px;
     border-width: thin;
     font-size:0.7em;
+    margin-right:4px;
 `;
 
 const Image = styled.img`
     width:100%;
+    height:100%;
 `;
 
 
@@ -67,7 +68,12 @@ const Star = styled.div`
 `;
 
 const RoomInfo = styled.div`
-    text-overflow:ellipsis
+    overflow:hidden;
+    text-overflow:ellipsis;
+    width:${({superhost})=>superhost? `180px`: `240px`};
+    white-space:nowrap;
+    font-size:0.9rem;
+    color:#A0A0A0;
 `;
 
 
@@ -78,7 +84,11 @@ class Suggestion extends React.Component {
 
         this.state={
             reviews:[],
-            average:0
+            average:0,
+            price:0,
+            placeName:'',
+            numbOfBedrooms:0,
+            hostAndRooms:{}
         }
 
         this.getAverage = this.getAverage.bind(this);
@@ -87,9 +97,9 @@ class Suggestion extends React.Component {
 
     componentDidMount(){
         
-        axios.get(`http://ec2-3-129-19-151.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}`)
+        
+        axios.get(`http://ec2-3-129-14-177.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}`)
             .then(res =>{
-                console.log(res);
                 this.setState({
                     reviews:res.data
                 })
@@ -97,12 +107,37 @@ class Suggestion extends React.Component {
                 console.log(err);
                 console.log('could not retrieve reviews data')
             });
-            this.getAverage()
+        this.getAverage();
+
+        axios.get(`http://ec2-52-14-154-112.us-east-2.compute.amazonaws.com/api/reservation/${this.props.suggestion.listingId}`)
+            .then(res =>{
+                this.setState({
+                    price:res.data.standardPrice
+                })
+            }).catch(err =>{
+                console.log(err);
+                console.log('could not retrieve price data');
+            })
+        
+        axios.get(`http://ec2-3-15-150-168.us-east-2.compute.amazonaws.com:4000/api/description/${this.props.suggestion.listingId}`)
+            .then(res =>{
+                console.log(res.data);
+                this.setState({
+                    placeName:res.data.nameOfListing,
+                    numbOfBedrooms:res.data.sleepingArrangements.length,
+                    hostAndRooms:res.data.hostAndRooms[0]
+                })
+                
+            }).catch(err =>{
+                console.log(err);
+                console.log('could not retrieve reviews data')
+            });
+
     }
 
 
     getAverage(){
-        axios.get(`http://ec2-3-129-19-151.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
+        axios.get(`http://ec2-3-129-14-177.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
             .then(res =>{
                 this.setState({
                     average:res.data
@@ -130,11 +165,11 @@ class Suggestion extends React.Component {
                     {suggestion.superhost === 1?
                     <RoomDescription>
                         <Superhost>SUPERHOST</Superhost>
-                        <RoomInfo>{suggestion.roomtype} • {suggestion.numbOfBedrooms}</RoomInfo>
+                        <RoomInfo superhost={true}>{this.state.hostAndRooms.entirePlace? `Entire ${this.state.hostAndRooms.typeOfPlace}`: `Private Rooms in ${this.state.hostAndRooms.typeOfPlace}`} • {this.state.numbOfBedrooms} {this.state.numbOfBedrooms <2? 'bed':'beds'}</RoomInfo>
                     </RoomDescription>
                     :
                     <RoomDescription>
-                        <RoomInfo>{suggestion.roomtype} • {suggestion.numbOfBedrooms}</RoomInfo>
+                        <RoomInfo superhost={false}>{this.state.hostAndRooms.entirePlace? `Entire ${this.state.hostAndRooms.typeOfPlace}`: `Private Rooms in ${this.state.hostAndRooms.typeOfPlace}`} • {this.state.numbOfBedrooms} {this.state.numbOfBedrooms <2? 'bed':'beds'}</RoomInfo>
                     </RoomDescription>
                     }
 
@@ -143,8 +178,8 @@ class Suggestion extends React.Component {
                     <Reviews><Star></Star>{this.state.average} ({this.state.reviews.length})</Reviews>
                     
                 </RoomType>
-                <RoomName>{suggestion.placeName}</RoomName>
-                <RoomPrice>${Math.floor(suggestion.price)} / night</RoomPrice>
+                <RoomName>{this.state.placeName}</RoomName>
+                <RoomPrice>${Math.floor(this.state.price)} / night</RoomPrice>
 
                 
             </SuggestionContainer>
