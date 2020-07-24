@@ -19,8 +19,8 @@ const NavContainer = styled.div`
 
 const SuggestionsContainer = styled.div`
   display:grid;
-  grid-template-columns: auto auto auto auto;
-  justifycontent: space-between;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2.5%;
   width:100%;
   max-width:100%
 `;
@@ -67,7 +67,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
 
-    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-1]);
+    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-2]);
 
     this.state ={
       listingId : this.requestedId,
@@ -104,10 +104,9 @@ class App extends React.Component {
 
     axios.get(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
       .then(res =>{
-        console.log('got array')
       this.setState({
         suggestions: res.data
-      },()=>{console.log(this.state.suggestions)})
+      })
       })
       .catch(err =>{
       console.log(err);

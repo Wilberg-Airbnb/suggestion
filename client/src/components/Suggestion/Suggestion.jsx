@@ -29,7 +29,11 @@ const Image = styled.img`
 
 
 const SuggestionContainer = styled.div`
-    padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
+    // padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
+
+    &:hover{
+        cursor:pointer;
+    }
 `;
 
 const RoomType = styled.div`
@@ -88,7 +92,8 @@ class Suggestion extends React.Component {
             price:0,
             placeName:'',
             numbOfBedrooms:0,
-            hostAndRooms:{}
+            hostAndRooms:{},
+            superhost:null
         }
 
         this.getAverage = this.getAverage.bind(this);
@@ -121,7 +126,6 @@ class Suggestion extends React.Component {
         
         axios.get(`http://ec2-3-15-150-168.us-east-2.compute.amazonaws.com:4000/api/description/${this.props.suggestion.listingId}`)
             .then(res =>{
-                console.log(res.data);
                 this.setState({
                     placeName:res.data.nameOfListing,
                     numbOfBedrooms:res.data.sleepingArrangements.length,
@@ -132,6 +136,16 @@ class Suggestion extends React.Component {
                 console.log(err);
                 console.log('could not retrieve reviews data')
             });
+
+        axios.get(`http://ec2-3-12-169-208.us-east-2.compute.amazonaws.com:2000/api/host/${this.props.suggestion.listingId}`)
+            .then(res =>{
+                this.setState({
+                    superhost:JSON.parse(res.data.superhost)
+                })
+            }).catch(err =>{
+                console.log(err);
+                console.log('could not retrieve superhost data')
+            })
 
     }
 
@@ -162,7 +176,7 @@ class Suggestion extends React.Component {
 
                     </RoomDescription> */}
 
-                    {suggestion.superhost === 1?
+                    {this.state.superhost?
                     <RoomDescription>
                         <Superhost>SUPERHOST</Superhost>
                         <RoomInfo superhost={true}>{this.state.hostAndRooms.entirePlace? `Entire ${this.state.hostAndRooms.typeOfPlace}`: `Private Rooms in ${this.state.hostAndRooms.typeOfPlace}`} • {this.state.numbOfBedrooms} {this.state.numbOfBedrooms <2? 'bed':'beds'}</RoomInfo>

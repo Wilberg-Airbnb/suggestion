@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "react": "webpack -d --watch",
-    "server": "nodemon server/server.js",
+    "server": "node server/server.js",
     "test": "jest --watch *.js",
     "enzymetest": "react-scripts test --env=jsdom",
     "seed": "node server/seed.js",
