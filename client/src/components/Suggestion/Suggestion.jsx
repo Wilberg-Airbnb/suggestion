@@ -1,12 +1,47 @@
-import React from 'react';
+import React,{useState} from 'react';
 import styled from 'styled-components';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 import axios from 'axios';
 
+const Circle = styled.div`
+    background:#F0F0F0;
+    border-radius:50%;
+    display:${({hover}) => hover?'flex':'none'};
+    position: absolute;
+    top:3%;
+    right:3%;
+    width:11%;
+    height:11%;
+    align-items: center;
+    justify-content:center;
+
+    &:hover{
+        background:white;
+    }
+`;
+
+const Heartsign= styled(FavoriteIcon)`
+    position:relative;
+    display:${({hover}) => hover?'block':'none'};
+
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    fill: ${({favorite}) => !favorite? 'white !important':'rgb(255,56,92) !important'};
+    height:60% !important;
+    width:60% !important;
+
+
+`;
+
+// rgb(255, 56, 92)
 
 const ImageBox = styled.div`
     height:300px;
-
+    overflow:hidden;
+    position:relative;
 }
 
 `;
@@ -25,6 +60,11 @@ const Superhost = styled.div`
 const Image = styled.img`
     width:100%;
     height:100%;
+    position:relative:
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
 `;
 
 
@@ -81,6 +121,8 @@ const RoomInfo = styled.div`
 `;
 
 
+
+
 class Suggestion extends React.Component {
     constructor(props){
         super(props)
@@ -93,11 +135,18 @@ class Suggestion extends React.Component {
             placeName:'',
             numbOfBedrooms:0,
             hostAndRooms:{},
-            superhost:null
+            superhost:null,
+            hover:false,
+            favorite:false
         }
 
         this.getAverage = this.getAverage.bind(this);
+        this.mouseEnter = this.mouseEnter.bind(this);
+        this.mouseLeave = this.mouseLeave.bind(this);
+        this.addFavorite = this.addFavorite.bind(this);
     }
+
+
 
 
     componentDidMount(){
@@ -149,6 +198,24 @@ class Suggestion extends React.Component {
 
     }
 
+    
+    mouseEnter(){
+        this.setState({
+            hover:true
+        })
+    }
+
+    mouseLeave(){
+        this.setState({
+            hover:false
+        })
+    }
+
+    addFavorite(){
+        this.setState(prevState=>({
+            favorite:!prevState.favorite
+        }))
+    }
 
     getAverage(){
         axios.get(`http://ec2-3-129-14-177.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
@@ -167,7 +234,7 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox><Image src={suggestion.pictureURL} alt="picture"></Image></ImageBox>
+                <ImageBox onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={suggestion.pictureURL} alt="picture"></Image><Circle hover={this.state.hover}><Heartsign onClick={this.addFavorite} favorite={this.state.favorite} border={1} stroke={"black"} stroke-width={0.8} hover ={this.state.hover}/></Circle></ImageBox>
                 <RoomType> 
                     {/* <RoomDescription>
 

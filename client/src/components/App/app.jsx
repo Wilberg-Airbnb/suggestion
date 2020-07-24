@@ -44,6 +44,7 @@ const Pagination = styled.div`
 
 const SlideButton = styled.button`
   border:none;
+  outline:none !important;
   color:black;
   background-color:white;
   text-align:center;
