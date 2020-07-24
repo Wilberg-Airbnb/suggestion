@@ -67,7 +67,7 @@ class App extends React.Component {
   constructor(props){
     super(props);
 
-    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-1]);
+    this.requestedId = JSON.parse(window.location.pathname.split('/')[window.location.pathname.split('/').length-2]);
 
     this.state ={
       listingId : this.requestedId,
@@ -104,10 +104,9 @@ class App extends React.Component {
 
     axios.get(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
       .then(res =>{
-        console.log('got array')
       this.setState({
         suggestions: res.data
-      },()=>{console.log(this.state.suggestions)})
+      })
       })
       .catch(err =>{
       console.log(err);
