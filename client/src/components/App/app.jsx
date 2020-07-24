@@ -19,8 +19,8 @@ const NavContainer = styled.div`
 
 const SuggestionsContainer = styled.div`
   display:grid;
-  grid-template-columns: auto auto auto auto;
-  justifycontent: space-between;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 2.5%;
   width:100%;
   max-width:100%
 `;

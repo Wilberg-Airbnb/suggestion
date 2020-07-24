@@ -29,7 +29,7 @@ const Image = styled.img`
 
 
 const SuggestionContainer = styled.div`
-    padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
+    // padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
 
     &:hover{
         cursor:pointer;
