@@ -137,7 +137,8 @@ class Suggestion extends React.Component {
             hostAndRooms:{},
             superhost:null,
             hover:false,
-            favorite:false
+            favorite:false,
+            photoUrl:''
         }
 
         this.getAverage = this.getAverage.bind(this);
@@ -152,7 +153,7 @@ class Suggestion extends React.Component {
     componentDidMount(){
         
         
-        axios.get(`http://ec2-3-129-14-177.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}`)
+        axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}`)
             .then(res =>{
                 this.setState({
                     reviews:res.data
@@ -173,7 +174,7 @@ class Suggestion extends React.Component {
                 console.log('could not retrieve price data');
             })
         
-        axios.get(`http://ec2-3-15-150-168.us-east-2.compute.amazonaws.com:4000/api/description/${this.props.suggestion.listingId}`)
+        axios.get(`http://52.14.166.9:4000/api/description/${this.props.suggestion.listingId}`)
             .then(res =>{
                 this.setState({
                     placeName:res.data.nameOfListing,
@@ -197,7 +198,12 @@ class Suggestion extends React.Component {
             })
         axios.get(`http://52.14.166.9:3001/api/photos/thumbnail/${this.props.suggestion.listingId}`)
             .then(res =>{
-                console.log(res.data)
+                this.setState({
+                    photoUrl:res.data.thumbNail
+                })
+            }).catch(err =>{
+                console.log(err);
+                console.log('could not retrieve thumbnail data')
             })
 
     }
@@ -222,7 +228,7 @@ class Suggestion extends React.Component {
     }
 
     getAverage(){
-        axios.get(`http://ec2-3-129-14-177.us-east-2.compute.amazonaws.com:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
+        axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
             .then(res =>{
                 this.setState({
                     average:res.data
