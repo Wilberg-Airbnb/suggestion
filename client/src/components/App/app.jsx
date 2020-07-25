@@ -111,6 +111,8 @@ class App extends React.Component {
       })
       .catch(err =>{
       console.log(err);
+      console.log('componentDidMount failed')
+      console.log(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
     })
 
   }
