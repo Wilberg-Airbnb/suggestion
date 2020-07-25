@@ -163,7 +163,7 @@ class Suggestion extends React.Component {
             });
         this.getAverage();
 
-        axios.get(`http://ec2-52-14-154-112.us-east-2.compute.amazonaws.com/api/reservation/${this.props.suggestion.listingId}`)
+        axios.get(`http://3.19.16.18/api/reservation/${this.props.suggestion.listingId}`)
             .then(res =>{
                 this.setState({
                     price:res.data.standardPrice
@@ -186,7 +186,7 @@ class Suggestion extends React.Component {
                 console.log('could not retrieve reviews data')
             });
 
-        axios.get(`http://ec2-3-12-169-208.us-east-2.compute.amazonaws.com:2000/api/host/${this.props.suggestion.listingId}`)
+        axios.get(`http://3.12.169.208:2000/api/host/${this.props.suggestion.listingId}`)
             .then(res =>{
                 this.setState({
                     superhost:JSON.parse(res.data.superhost)
@@ -194,6 +194,10 @@ class Suggestion extends React.Component {
             }).catch(err =>{
                 console.log(err);
                 console.log('could not retrieve superhost data')
+            })
+        axios.get(`http://52.14.166.9:3001/api/photos/thumbnail/${this.props.suggestion.listingId}`)
+            .then(res =>{
+                console.log(res.data)
             })
 
     }
@@ -260,7 +264,7 @@ class Suggestion extends React.Component {
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
-                <RoomPrice>${Math.floor(this.state.price)} / night</RoomPrice>
+                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block"}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
             </SuggestionContainer>
