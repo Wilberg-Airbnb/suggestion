@@ -150,11 +150,11 @@ class Suggestion extends React.Component {
 
 
 
-    componentDidMount(){
-        
-        
+    componentDidMount(){  
+
         axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}`)
             .then(res =>{
+
                 this.setState({
                     reviews:res.data
                 })
@@ -166,6 +166,7 @@ class Suggestion extends React.Component {
 
         axios.get(`http://3.19.16.18/api/reservation/${this.props.suggestion.listingId}`)
             .then(res =>{
+
                 this.setState({
                     price:res.data.standardPrice
                 })
@@ -176,6 +177,7 @@ class Suggestion extends React.Component {
         
         axios.get(`http://52.14.166.9:4000/api/description/${this.props.suggestion.listingId}`)
             .then(res =>{
+
                 this.setState({
                     placeName:res.data.nameOfListing,
                     numbOfBedrooms:res.data.sleepingArrangements.length,
@@ -196,17 +198,58 @@ class Suggestion extends React.Component {
                 console.log(err);
                 console.log('could not retrieve superhost data')
             })
-        axios.get(`http://52.14.166.9:3001/api/photos/thumbnail/${this.props.suggestion.listingId}`)
-            .then(res =>{
-                this.setState({
-                    photoUrl:res.data.thumbNail
-                })
-            }).catch(err =>{
-                console.log(err);
-                console.log('could not retrieve thumbnail data')
-            })
-
     }
+
+    componentDidUpdate(prevProps) {
+        if(this.props.suggestion.listingId !== prevProps.suggestion.listingId) 
+        {
+
+            axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}`)
+                .then(res =>{
+                    this.setState({
+                        reviews:res.data
+                    })
+                }).catch(err =>{
+                    console.log(err);
+                    console.log('could not retrieve reviews data')
+                });
+            this.getAverage();
+    
+            axios.get(`http://3.19.16.18/api/reservation/${this.props.suggestion.listingId}`)
+                .then(res =>{
+                    this.setState({
+                        price:res.data.standardPrice
+                    })
+                }).catch(err =>{
+                    console.log(err);
+                    console.log('could not retrieve price data');
+                })
+            
+            axios.get(`http://52.14.166.9:4000/api/description/${this.props.suggestion.listingId}`)
+                .then(res =>{
+                    this.setState({
+                        placeName:res.data.nameOfListing,
+                        numbOfBedrooms:res.data.sleepingArrangements.length,
+                        hostAndRooms:res.data.hostAndRooms[0]
+                    })
+                    
+                }).catch(err =>{
+                    console.log(err);
+                    console.log('could not retrieve reviews data')
+                });
+    
+            axios.get(`http://3.12.169.208:2000/api/host/${this.props.suggestion.listingId}`)
+                .then(res =>{
+                    this.setState({
+                        superhost:JSON.parse(res.data.superhost)
+                    })
+                }).catch(err =>{
+                    console.log(err);
+                    console.log('could not retrieve superhost data')
+                })
+        }
+      } 
+
 
     
     mouseEnter(){
@@ -244,15 +287,8 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={suggestion.pictureURL} alt="picture"></Image><Circle hover={this.state.hover}><Heartsign onClick={this.addFavorite} favorite={this.state.favorite} border={1} stroke={"black"} stroke-width={0.8} hover ={this.state.hover}/></Circle></ImageBox>
+                <ImageBox onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={suggestion.pictureURL} alt="picture"></Image><Circle hover={this.state.hover?1:0}><Heartsign onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
                 <RoomType> 
-                    {/* <RoomDescription>
-
-                            {suggestion.superhost === 1?<Superhost>SUPERHOST</Superhost>: null}
-                            <RoomInfo>{suggestion.roomtype} • {suggestion.numbOfBedrooms}</RoomInfo>
-
-                    </RoomDescription> */}
-
                     {this.state.superhost?
                     <RoomDescription>
                         <Superhost>SUPERHOST</Superhost>
