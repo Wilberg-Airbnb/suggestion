@@ -103,7 +103,7 @@ class App extends React.Component {
 
   componentDidMount(){
 
-    axios.get(window.location.protocol + '//' +  window.location.host + `/api/suggestions/${this.state.listingId}`)
+    axios.get(`http://52.14.214.44:8081/api/suggestions/${this.state.listingId}`)
       .then(res =>{
       this.setState({
         suggestions: res.data
