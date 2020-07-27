@@ -87,13 +87,15 @@ const RoomName=styled.div`
     margin-top:0.7rem;
     overflow:hidden;
     text-overflow:ellipsis;
+    white-space:nowrap;
 `;
 
 const RoomPrice = styled.div`
     margin-top:0.7rem;
 `;
 
-const Reviews = styled.div``;
+const Reviews = styled.div`
+ `;
 
 const RoomDescription= styled.div`
     display:flex;
@@ -197,6 +199,17 @@ class Suggestion extends React.Component {
             }).catch(err =>{
                 console.log(err);
                 console.log('could not retrieve superhost data')
+            });
+
+        axios.get(`http://52.14.166.9:3001/api/photos/thumbnail/${this.props.suggestion.listingId}`)
+            .then(res =>{
+                this.setState({
+                    photoUrl: res.data.thumbNail
+                })
+
+            }).catch(err =>{
+              console.log(err);
+              console.log('could not retrive thumbnail data');  
             })
     }
 
@@ -206,6 +219,7 @@ class Suggestion extends React.Component {
 
             axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}`)
                 .then(res =>{
+                    console.log(this.state);
                     this.setState({
                         reviews:res.data
                     })
@@ -246,6 +260,17 @@ class Suggestion extends React.Component {
                 }).catch(err =>{
                     console.log(err);
                     console.log('could not retrieve superhost data')
+                });
+
+                axios.get(`http://52.14.166.9:3001/api/photos/thumbnail/${this.props.suggestion.listingId}`)
+                .then(res =>{
+                    this.setState({
+                        photoUrl: res.data.thumbNail
+                    })
+    
+                }).catch(err =>{
+                  console.log(err);
+                  console.log('could not retrive thumbnail data');  
                 })
         }
       } 
@@ -287,7 +312,7 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={suggestion.pictureURL} alt="picture"></Image><Circle hover={this.state.hover?1:0}><Heartsign onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
+                <ImageBox className="suggestionimgbox" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={this.state.photoUrl} alt="picture"></Image><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
                 <RoomType> 
                     {this.state.superhost?
                     <RoomDescription>
@@ -302,7 +327,7 @@ class Suggestion extends React.Component {
 
                     
 
-                    <Reviews><Star></Star>{this.state.average} ({this.state.reviews.length})</Reviews>
+                    <Reviews className="suggestionReviews"><Star></Star>{this.state.average} ({this.state.reviews.length})</Reviews>
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
