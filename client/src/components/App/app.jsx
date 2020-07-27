@@ -8,7 +8,9 @@ import Suggestion from '../Suggestion/Suggestion.jsx';
 
 const AppContainer = styled.div`
   background-color: rgb(247,247,247);  
-  margin: 4rem 10rem;
+  margin: auto;
+  margin-top:2rem;
+  width:80%;
 `;
 
 const NavContainer = styled.div`
@@ -24,15 +26,6 @@ const SuggestionsContainer = styled.div`
   width:100%;
   max-width:100%
 `;
-
-// const SuggestionsContainer = styled.div`
-//   display:flex;
-//   overflow:auto;
-
-//   grid-template-columns: auto auto auto auto;
-//   justifycontent: space-between;
-//   width:100%;
-// `;
 
 const MorePlace = styled.h2`
   display:block;
@@ -95,10 +88,8 @@ class App extends React.Component {
         this.setState(prevState =>({
           currentPage: prevState.currentPage +1
         }))
-      }
-      
+      }    
     }
-    
   }
 
   componentDidMount(){
@@ -107,7 +98,7 @@ class App extends React.Component {
       .then(res =>{
       this.setState({
         suggestions: res.data
-      })
+      },()=>console.log(this.state.suggestions))
       })
       .catch(err =>{
       console.log(err);
@@ -132,15 +123,15 @@ class App extends React.Component {
             <MorePlace>More places to stay</MorePlace>
             <Pagination>
               {`${this.state.currentPage} / 3        `} 
-              <SlideButton onClick={() =>{this.handleClick('left')}}>{`<`}</SlideButton>
-              <SlideButton onClick={() =>{this.handleClick('right')}}>{`>`}</SlideButton>
+              <SlideButton className="Carousel_leftClick" onClick={() =>{this.handleClick('left')}}>{`<`}</SlideButton>
+              <SlideButton className="Carousel_rightClick" onClick={() =>{this.handleClick('right')}}>{`>`}</SlideButton>
               </Pagination>
           </NavContainer>
-          <SuggestionsContainer>
+          <SuggestionsContainer className="SuggestionContainer">
 
             {
               currentSuggestions.map((suggestion,key)=>{
-                return <Suggestion suggestion ={suggestion} index = {key} key={key}></Suggestion>
+                return <Suggestion className = "suggestionComponent" suggestion ={suggestion} index = {key} key={key}></Suggestion>
               })
             }
 

@@ -24,7 +24,7 @@ function weightedRandomDistrib(min,max,mean,varianceFactor) {
 
 function generateSeed2(){
   var roomtype = ['Entire place', 'private rooms','shared room'];
-  var seed2 = [];
+  let seed2 = [];
   for(var i = 0; i<100;i++){
     var obj ={
       listingId:i,
@@ -44,7 +44,7 @@ function generateSeed2(){
 
 
 
-seed2= generateSeed2()
+var seed2= generateSeed2()
 
 fs.writeFile(__dirname+'/dummyData2.txt', JSON.stringify(seed2), err =>{
   if(err){
