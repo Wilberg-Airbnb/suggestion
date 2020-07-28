@@ -3,8 +3,10 @@ const {dbConnection} = require('../MYSQL/index.js');
 const morgan = require('morgan');
 const {join} = require('path');
 const cors = require('cors');
+const compression = require('compression');
 
 const app = express();
+app.use(compression());
 app.use(cors());
 // app.use(express.static('public/dist'));
 
