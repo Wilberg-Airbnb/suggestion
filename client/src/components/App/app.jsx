@@ -92,6 +92,10 @@ class App extends React.Component {
     }
   }
 
+  shouldComponentUpdate(){
+    return true;
+  }
+
   componentDidMount(){
 
     axios.get(`http://52.14.214.44:8081/api/suggestions/${this.state.listingId}`)
