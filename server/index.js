@@ -19,7 +19,7 @@ app.use((req,res,next) =>{
   next();
 })
 
-app.use('/:listingId/', express.static('public/dist'));
+
 
 
 
@@ -41,6 +41,8 @@ app.get('/bundle.js',(req,res) =>{
     res.sendFile(join(__dirname,'../','public','dist','bundle.js'))
   }
 });
+
+app.use('/:listingId/', express.static('public/dist'));
 
 
 
