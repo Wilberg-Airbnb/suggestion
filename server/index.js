@@ -33,7 +33,7 @@ app.get('/bundle.js',(req,res) =>{
     res.set('Content-Encoding', 'br');
     res.set('Content-Type','application/javascript');
     res.sendFile(join(__dirname,'../','public','dist','bundle.js.br'))
-  } else if(req.header('Accept-Encoding').incldues('gz')){
+  } else if(req.header('Accept-Encoding').includes('gz')){
     console.log('calling gzip');
     res.set('Content-Encoding','gzip');
     res.set('Content-Type','application/javascript');
