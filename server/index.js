@@ -21,7 +21,7 @@ app.use((req,res,next) =>{
   next();
 })
 
-app.use('/:listingId/', express.static('public/dist'));
+//app.use('/:listingId/', express.static('public/dist'));
 
 
 
@@ -45,6 +45,7 @@ app.get('/bundle.js',(req,res) =>{
 });
 
 
+app.use('/:listingId/', express.static('public/dist'));
 
 app.get('/api/suggestions/:listingId',(req,res) =>{
   console.log('received')
