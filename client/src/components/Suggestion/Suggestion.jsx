@@ -44,9 +44,10 @@ const Heartsign= styled(FavoriteIcon)`
 
 const ImageBox = styled.div`
 #suggestions & {
-    height:300px;
+    height:30.0vmin;
     overflow:hidden;
     position:relative;
+    width:100%;
 }
 
 `;
@@ -56,11 +57,11 @@ const Superhost = styled.div`
     background:white;
     border-style:solid;
     border-color:black;
-    padding:3px;
-    border-radius:5px;
+    padding:0.3vmin;
+    border-radius:0.5vmin;
     border-width: thin;
-    font-size:0.7em;
-    margin-right:4px;
+    font-size:1vmin;
+    margin-right:0.5vmin;
 }
 `;
 
@@ -79,11 +80,10 @@ const Image = styled.img`
 
 const SuggestionContainer = styled.div`
 #suggestions & {
-    // padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
-
     &:hover{
         cursor:pointer;
     }
+ width:100%;
 }
 `;
 
@@ -113,6 +113,8 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
+    width:30%;
+    text-align:right;
 }
  `;
 
@@ -129,9 +131,9 @@ const Star = styled.div`
   background: #FF385C;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   display: inline-block;
-  height: 15px;
-  width: 15px;
-  margin-right:4px;
+  height: 1.5vmin;
+  width: 1.5vmin;
+  margin-right:0.5vmin;
 }
 }
 `;
@@ -140,7 +142,7 @@ const RoomInfo = styled.div`
 #suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
-    width:${({superhost})=>superhost? `180px`: `240px`};
+    width:${({superhost})=>superhost? `18vmin`: `24vmin`};
     white-space:nowrap;
     font-size:0.9rem;
     color:#A0A0A0;
