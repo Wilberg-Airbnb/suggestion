@@ -7,35 +7,46 @@ import Suggestion from '../Suggestion/Suggestion.jsx';
 
 
 const AppContainer = styled.div`
+#suggestions & {
   background-color: rgb(247,247,247);  
   margin: auto;
   margin-top:2rem;
   width:80%;
+}
 `;
 
 const NavContainer = styled.div`
+#suggestions & {
   display:flex;
   justify-content:space-between;
   margin-bottom:1rem;
+}
 `;
 
 const SuggestionsContainer = styled.div`
+#suggestions & {
   display:grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2.5%;
   width:100%;
-  max-width:100%
+  max-width:100%;
+}
 `;
 
 const MorePlace = styled.h2`
+#suggestions & {
   display:block;
+}
 `;
 
 const Pagination = styled.div`
+#suggestions & {
+}
 
 `;
 
 const SlideButton = styled.button`
+#suggestions & {
   border:none;
   outline:none !important;
   color:black;
@@ -53,6 +64,7 @@ const SlideButton = styled.button`
   &:hover{
     cursor:pointer;
   }
+}
 `;
 
 
@@ -90,6 +102,10 @@ class App extends React.Component {
         }))
       }    
     }
+  }
+
+  shouldComponentUpdate(){
+    return true;
   }
 
   componentDidMount(){

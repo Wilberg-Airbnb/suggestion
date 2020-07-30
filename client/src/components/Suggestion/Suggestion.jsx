@@ -6,6 +6,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import axios from 'axios';
 
 const Circle = styled.div`
+#suggestions & {
     background:#F0F0F0;
     border-radius:50%;
     display:${({hover}) => hover?'flex':'none'};
@@ -20,9 +21,11 @@ const Circle = styled.div`
     &:hover{
         background:white;
     }
+}
 `;
 
 const Heartsign= styled(FavoriteIcon)`
+#suggestions & {
     position:relative;
     display:${({hover}) => hover?'block':'none'};
 
@@ -32,13 +35,15 @@ const Heartsign= styled(FavoriteIcon)`
     fill: ${({favorite}) => !favorite? 'white !important':'rgb(255,56,92) !important'};
     height:60% !important;
     width:60% !important;
-
+    
+}
 
 `;
 
 // rgb(255, 56, 92)
 
 const ImageBox = styled.div`
+#suggestions & {
     height:300px;
     overflow:hidden;
     position:relative;
@@ -47,6 +52,7 @@ const ImageBox = styled.div`
 `;
 
 const Superhost = styled.div`
+#suggestions & {
     background:white;
     border-style:solid;
     border-color:black;
@@ -55,9 +61,11 @@ const Superhost = styled.div`
     border-width: thin;
     font-size:0.7em;
     margin-right:4px;
+}
 `;
 
 const Image = styled.img`
+#suggestions & {
     width:100%;
     height:100%;
     position:relative:
@@ -65,45 +73,59 @@ const Image = styled.img`
     bottom:0;
     left:0;
     right:0;
+}
 `;
 
 
 const SuggestionContainer = styled.div`
+#suggestions & {
     // padding-right: ${({index}) =>  index === 3? '0px': '1.5rem'};
 
     &:hover{
         cursor:pointer;
     }
+}
 `;
 
 const RoomType = styled.div`
+#suggestions & {
     display:flex;
     justify-content:space-between;
     margin-top:0.7rem;
-    width:auto
+    width:auto;
+}
 `;
 
 const RoomName=styled.div`
+#suggestions & {
     margin-top:0.7rem;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+}
 `;
 
 const RoomPrice = styled.div`
+#suggestions & {
     margin-top:0.7rem;
+}
 `;
 
 const Reviews = styled.div`
+#suggestions & {
+}
  `;
 
 const RoomDescription= styled.div`
+#suggestions & {
     display:flex;
     justify-content:flex-start;
     width:70%;
+}
 `;
 
 const Star = styled.div`
+#suggestions & {
   background: #FF385C;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   display: inline-block;
@@ -111,15 +133,18 @@ const Star = styled.div`
   width: 15px;
   margin-right:4px;
 }
+}
 `;
 
 const RoomInfo = styled.div`
+#suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
     width:${({superhost})=>superhost? `180px`: `240px`};
     white-space:nowrap;
     font-size:0.9rem;
     color:#A0A0A0;
+}
 `;
 
 

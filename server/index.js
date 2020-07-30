@@ -3,10 +3,12 @@ const {dbConnection} = require('../MYSQL/index.js');
 const morgan = require('morgan');
 const {join} = require('path');
 const cors = require('cors');
+const compression = require('compression');
 
 const app = express();
+app.use(compression());
 app.use(cors());
-// app.use(express.static('public/dist'));
+app.use(express.static('public/dist'));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -19,7 +21,7 @@ app.use((req,res,next) =>{
   next();
 })
 
-
+//app.use('/:listingId/', express.static('public/dist'));
 
 
 
@@ -31,7 +33,7 @@ app.get('/bundle.js',(req,res) =>{
     res.set('Content-Encoding', 'br');
     res.set('Content-Type','application/javascript');
     res.sendFile(join(__dirname,'../','public','dist','bundle.js.br'))
-  } else if(req.header('Accept-Encoding').incldues('gz')){
+  } else if(req.header('Accept-Encoding').includes('gz')){
     console.log('calling gzip');
     res.set('Content-Encoding','gzip');
     res.set('Content-Type','application/javascript');
@@ -45,6 +47,7 @@ app.get('/bundle.js',(req,res) =>{
 app.use('/:listingId/', express.static('public/dist'));
 
 
+app.use('/:listingId/', express.static('public/dist'));
 
 app.get('/api/suggestions/:listingId',(req,res) =>{
   console.log('received')
