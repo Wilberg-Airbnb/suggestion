@@ -7,35 +7,46 @@ import Suggestion from '../Suggestion/Suggestion.jsx';
 
 
 const AppContainer = styled.div`
+#suggestions & {
   background-color: rgb(247,247,247);  
-  margin: auto;
-  margin-top:2rem;
-  width:80%;
+  width:100%;
+}
 `;
 
 const NavContainer = styled.div`
+#suggestions & {
   display:flex;
   justify-content:space-between;
   margin-bottom:1rem;
+}
 `;
 
 const SuggestionsContainer = styled.div`
+#suggestions & {
   display:grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2.5%;
   width:100%;
-  max-width:100%
+
+}
 `;
 
+// grid-template-columns: repeat(4, 1fr);
+
 const MorePlace = styled.h2`
+#suggestions & {
   display:block;
+}
 `;
 
 const Pagination = styled.div`
+#suggestions & {
+}
 
 `;
 
 const SlideButton = styled.button`
+#suggestions & {
   border:none;
   outline:none !important;
   color:black;
@@ -43,16 +54,17 @@ const SlideButton = styled.button`
   text-align:center;
   text-decoration:none;
   display:inline-block;
-  font-size:16px;
-  margin: 10px 5px;
+  font-size:1.6vmin;
+  margin: 1vmin 0.5vmin;
   border-radius:50%;
-  height:32px;
-  width:32px;
+  height:3.2vmin;
+  width:3.2vmin;
   box-shadow: 0.5px 0.5px 0.5px 1px 	#A9A9A9;
 
   &:hover{
     cursor:pointer;
   }
+}
 `;
 
 
@@ -90,6 +102,10 @@ class App extends React.Component {
         }))
       }    
     }
+  }
+
+  shouldComponentUpdate(){
+    return true;
   }
 
   componentDidMount(){
