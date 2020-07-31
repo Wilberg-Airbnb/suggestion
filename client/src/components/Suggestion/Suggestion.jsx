@@ -104,7 +104,7 @@ const Superhost = styled.div`
     margin-right:5px;
     width:20%;
     text-align:center;
-    font-size:0.8vmin;
+    font-size:0.5em;
     height:100%;
     align-items:center;
 }
@@ -128,7 +128,7 @@ const RoomName=styled.div`
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size:16px;
+    font-size:1em;
 
 }
 `;
@@ -144,7 +144,7 @@ const Reviews = styled.div`
 #suggestions & {
     width:25%;
     text-align:right;
-    font-size:16px;
+    font-size:1em;
     height:100%;
     align-items:center;
 }
@@ -165,7 +165,7 @@ const RoomInfo = styled.div`
     text-overflow:ellipsis;
     width:${({superhost})=>superhost? `80%`: `100%`};
     white-space:nowrap;
-    font-size:15px;
+    font-size:1em;
     color:#A0A0A0;
     height:100%;
 }
@@ -380,7 +380,7 @@ class Suggestion extends React.Component {
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
-                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1.6vmin'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
+                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1em'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
             </SuggestionContainer>
