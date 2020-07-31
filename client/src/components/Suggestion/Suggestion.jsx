@@ -146,7 +146,7 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
-    width:30%;
+    width:50%;
     text-align:right;
     font-size:1em;
     height:100%;
@@ -161,7 +161,7 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:65%;
+    width:50%;
     font-size:1em;
 }
 `;
