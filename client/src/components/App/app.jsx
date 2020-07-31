@@ -10,6 +10,7 @@ const AppContainer = styled.div`
 #suggestions & {
   background-color: rgb(247,247,247);  
   width:100%;
+  height:400px;
 }
 `;
 
