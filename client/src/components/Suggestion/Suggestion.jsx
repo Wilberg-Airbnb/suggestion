@@ -44,8 +44,7 @@ const Heartsign= styled(FavoriteIcon)`
 
 const ImageBox = styled.div`
 #suggestions & {
-    height:30.0vmin;
-    overflow:hidden;
+    height:25vmin;
     position:relative;
     width:100%;
 }
@@ -60,8 +59,12 @@ const Superhost = styled.div`
     padding:0.3vmin;
     border-radius:0.5vmin;
     border-width: thin;
-    font-size:1vmin;
     margin-right:0.5vmin;
+    width:20%;
+    text-align:center;
+    font-size:0.8vmin;
+    height:100%;
+    align-items:center;
 }
 `;
 
@@ -74,6 +77,8 @@ const Image = styled.img`
     bottom:0;
     left:0;
     right:0;
+    max-width:100%;
+    object-fit:cover;
 }
 `;
 
@@ -92,7 +97,8 @@ const RoomType = styled.div`
     display:flex;
     justify-content:space-between;
     margin-top:0.7rem;
-    width:auto;
+    width:100%;
+    align-items:center;
 }
 `;
 
@@ -102,6 +108,8 @@ const RoomName=styled.div`
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    font-size:1.6vmin;
+    width:100%;
 }
 `;
 
@@ -113,8 +121,10 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
-    width:30%;
+    width:25%;
     text-align:right;
+    font-size:1.6vmin;
+    height:100%;
 }
  `;
 
@@ -122,7 +132,8 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:70%;
+    width:75%;
+    height:1.8vmin;
 }
 `;
 
@@ -142,10 +153,11 @@ const RoomInfo = styled.div`
 #suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
-    width:${({superhost})=>superhost? `18vmin`: `24vmin`};
+    width:${({superhost})=>superhost? `80%`: `100%`};
     white-space:nowrap;
-    font-size:0.9rem;
+    font-size:1.5vmin;
     color:#A0A0A0;
+    height:100%;
 }
 `;
 

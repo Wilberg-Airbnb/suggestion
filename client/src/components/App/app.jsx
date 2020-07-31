@@ -25,7 +25,7 @@ const SuggestionsContainer = styled.div`
 #suggestions & {
   display:grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2.5%;
+  grid-gap: 2.8%;
   width:100%;
 
 }
