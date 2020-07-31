@@ -10,8 +10,8 @@ const Star = styled.div`
   background: #FF385C;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   display: inline-block;
-  height: 16px;
-  width: 16px;
+  height: 14px;
+  width: 14px;
   margin-right:5px;
   align-items:center;
 }
@@ -140,7 +140,7 @@ const RoomName=styled.div`
 const RoomPrice = styled.div`
 #suggestions & {
     margin-top:0.5rem;
-    font-size:16px;
+    font-size:1em;
 }
 `;
 
@@ -159,6 +159,7 @@ const RoomDescription= styled.div`
     display:flex;
     justify-content:flex-start;
     width:75%;
+    font-size:1em;
 }
 `;
 
@@ -167,7 +168,7 @@ const RoomInfo = styled.div`
 #suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
-    width:${({superhost})=>superhost? `75%`: `100%`};
+    width:${({superhost})=>superhost? `73%`: `98%`};
     white-space:nowrap;
     font-size:1em;
     color:#A0A0A0;
