@@ -146,11 +146,14 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
-    width:25%;
+    width:30%;
     text-align:right;
     font-size:1em;
     height:100%;
     align-items:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
  `;
 
@@ -158,7 +161,7 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:75%;
+    width:65%;
     font-size:1em;
 }
 `;
