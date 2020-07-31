@@ -88,7 +88,7 @@ const Image = styled.img`
     right:0;
     max-width:100%;
     max-height:100%;
-    object-fit:cover;
+    object-fit:contain;
 
 }
 `;
