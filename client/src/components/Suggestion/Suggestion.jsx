@@ -88,7 +88,8 @@ const Image = styled.img`
     right:0;
     max-width:100%;
     max-height:100%;
-    object-fit:covers !important;
+
+    overflow:hidden;
 
 }
 `;
@@ -98,13 +99,13 @@ const Superhost = styled.div`
     background:white;
     border-style:solid;
     border-color:black;
-    padding:3px;
-    border-radius:5px;
+    padding:4px;
+    border-radius:6px;
     border-width: thin;
     margin-right:5px;
     width:50%;
     text-align:center;
-    font-size:0.5em;
+    font-size:0.9em;
     height:100%;
     align-items:center;
 }
@@ -131,8 +132,8 @@ const RoomName=styled.div`
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
-    font-size:1em;
-    width:95%;
+    font-size:1.2em;
+    width:85%;
 
 }
 `;
@@ -146,9 +147,9 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
-    width:50%;
+    width:35%;
     text-align:right;
-    font-size:1em;
+    font-size:1.2em;
     height:100%;
     align-items:center;
     overflow:hidden;
@@ -161,8 +162,7 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:50%;
-    font-size:1em;
+    width:65%;
 }
 `;
 
@@ -173,7 +173,7 @@ const RoomInfo = styled.div`
     text-overflow:ellipsis;
     width:${({superhost})=>superhost? `50%`: `100%`};
     white-space:nowrap;
-    font-size:1em;
+    font-size:1.2em;
     color:#A0A0A0;
     height:100%;
 }
@@ -369,7 +369,7 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox className="suggestionimgbox" style={{backgroundImage:`url('${this.state.photoUrl}')`,backgroundSize:'100% 100%', backgroundRepeat:'no-repeat'}} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
+                <ImageBox className="suggestionimgbox" style={{backgroundImage:`url('${this.state.photoUrl}')`,backgroundSize:'100% 100%', backgroundRepeat:'no-repeat'}} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={this.state.photoUrl} alt="picture"></Image><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
                 <RoomType> 
                     {this.state.superhost?
                     <RoomDescription>
@@ -382,11 +382,11 @@ class Suggestion extends React.Component {
                     </RoomDescription>
                     }
 
-                <Reviews className="suggestionReviews"><Star></Star>{`${this.state.average} (${this.state.reviews.length})`}</Reviews>
+                    <Reviews className="suggestionReviews"><Star></Star>{`${this.state.average} (${this.state.reviews.length})`}</Reviews>
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
-                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1em'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
+                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1.4em'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
             </SuggestionContainer>
