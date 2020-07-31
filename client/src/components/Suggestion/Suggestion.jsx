@@ -377,7 +377,7 @@ class Suggestion extends React.Component {
                 <Reviews className="suggestionReviews"><Star></Star>{`${this.state.average} (${this.state.reviews.length})`}</Reviews>
                     
                 </RoomType> */}
-                {/* <RoomName>{this.state.placeName}</RoomName> */}
+                <RoomName>{this.state.placeName}</RoomName>
                 <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1em'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
