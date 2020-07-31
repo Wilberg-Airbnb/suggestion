@@ -45,7 +45,7 @@ const Heartsign= styled(FavoriteIcon)`
 const SuggestionContainer = styled.div`
 #suggestions & {
 
-    width:100%;
+    width:28.125vmin;
     &:hover{
         cursor:pointer;
     };
