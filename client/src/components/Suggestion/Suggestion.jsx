@@ -5,6 +5,19 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import axios from 'axios';
 
+const Star = styled.div`
+#suggestions & {
+  background: #FF385C;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: inline-block;
+  height: 14px;
+  width: 14px;
+  margin-right:5px;
+  align-items:center;
+}
+}
+`;
+
 const Circle = styled.div`
 #suggestions & {
     background:#F0F0F0;
@@ -14,7 +27,7 @@ const Circle = styled.div`
     top:3%;
     right:3%;
     width:11%;
-    height:11%;
+    height:16%;
     align-items: center;
     justify-content:center;
 
@@ -42,28 +55,27 @@ const Heartsign= styled(FavoriteIcon)`
 
 // rgb(255, 56, 92)
 
+const SuggestionContainer = styled.div`
+#suggestions & {
+
+    width:100%;
+    &:hover{
+        cursor:pointer;
+    };
+    height:100%;
+ 
+}
+`;
+
 const ImageBox = styled.div`
 #suggestions & {
-    height:30.0vmin;
-    overflow:hidden;
+    height:50% !important;
     position:relative;
-    width:100%;
+    width:100% !important;
 }
 
 `;
 
-const Superhost = styled.div`
-#suggestions & {
-    background:white;
-    border-style:solid;
-    border-color:black;
-    padding:0.3vmin;
-    border-radius:0.5vmin;
-    border-width: thin;
-    font-size:1vmin;
-    margin-right:0.5vmin;
-}
-`;
 
 const Image = styled.img`
 #suggestions & {
@@ -74,47 +86,75 @@ const Image = styled.img`
     bottom:0;
     left:0;
     right:0;
+    max-width:100%;
+    max-height:100%;
+
+    overflow:hidden;
+
 }
 `;
 
-
-const SuggestionContainer = styled.div`
+const Superhost = styled.div`
 #suggestions & {
-    &:hover{
-        cursor:pointer;
-    }
- width:100%;
+    background:white;
+    border-style:solid;
+    border-color:black;
+    padding:4px;
+    border-radius:6px;
+    border-width: thin;
+    margin-right:5px;
+    width:50%;
+    text-align:center;
+    font-size:0.9em;
+    height:100%;
+    align-items:center;
 }
 `;
+
 
 const RoomType = styled.div`
 #suggestions & {
     display:flex;
     justify-content:space-between;
     margin-top:0.7rem;
-    width:auto;
+    width:98%;
+    align-items:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
 }
 `;
 
 const RoomName=styled.div`
 #suggestions & {
-    margin-top:0.7rem;
+    margin-top:0.5rem;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
+    font-size:1.2em;
+    width:85%;
+
 }
 `;
 
 const RoomPrice = styled.div`
 #suggestions & {
-    margin-top:0.7rem;
+    margin-top:0.5rem;
+    font-size:1em;
 }
 `;
 
 const Reviews = styled.div`
 #suggestions & {
-    width:30%;
+    width:35%;
     text-align:right;
+    font-size:1.2em;
+    height:100%;
+    align-items:center;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
 }
  `;
 
@@ -122,30 +162,20 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:70%;
+    width:65%;
 }
 `;
 
-const Star = styled.div`
-#suggestions & {
-  background: #FF385C;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  display: inline-block;
-  height: 1.5vmin;
-  width: 1.5vmin;
-  margin-right:0.5vmin;
-}
-}
-`;
 
 const RoomInfo = styled.div`
 #suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
-    width:${({superhost})=>superhost? `18vmin`: `24vmin`};
+    width:${({superhost})=>superhost? `50%`: `100%`};
     white-space:nowrap;
-    font-size:0.9rem;
+    font-size:1.2em;
     color:#A0A0A0;
+    height:100%;
 }
 `;
 
@@ -339,7 +369,7 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox className="suggestionimgbox" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={this.state.photoUrl} alt="picture"></Image><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
+                <ImageBox className="suggestionimgbox" style={{backgroundImage:`url('${this.state.photoUrl}')`,backgroundSize:'100% 100%', backgroundRepeat:'no-repeat'}} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={this.state.photoUrl} alt="picture"></Image><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
                 <RoomType> 
                     {this.state.superhost?
                     <RoomDescription>
@@ -352,13 +382,11 @@ class Suggestion extends React.Component {
                     </RoomDescription>
                     }
 
-                    
-
-                    <Reviews className="suggestionReviews"><Star></Star>{this.state.average} ({this.state.reviews.length})</Reviews>
+                    <Reviews className="suggestionReviews"><Star></Star>{`${this.state.average} (${this.state.reviews.length})`}</Reviews>
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
-                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block"}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
+                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1.4em'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
             </SuggestionContainer>

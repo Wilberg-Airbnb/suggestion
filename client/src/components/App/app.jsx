@@ -10,6 +10,7 @@ const AppContainer = styled.div`
 #suggestions & {
   background-color: rgb(247,247,247);  
   width:100%;
+  height:400px;
 }
 `;
 
@@ -18,16 +19,20 @@ const NavContainer = styled.div`
   display:flex;
   justify-content:space-between;
   margin-bottom:1rem;
+  width:100%;
+  height:10%;
 }
 `;
+
+
 
 const SuggestionsContainer = styled.div`
 #suggestions & {
   display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 2.5%;
+  grid-template-columns: 22% 22% 22% 22%;
+  grid-gap:4%;
   width:100%;
-
+  height:90%;
 }
 `;
 
@@ -57,8 +62,8 @@ const SlideButton = styled.button`
   font-size:1.6vmin;
   margin: 1vmin 0.5vmin;
   border-radius:50%;
-  height:3.2vmin;
-  width:3.2vmin;
+  height:2.6vmin;
+  width:2.6vmin;
   box-shadow: 0.5px 0.5px 0.5px 1px 	#A9A9A9;
 
   &:hover{
@@ -66,6 +71,9 @@ const SlideButton = styled.button`
   }
 }
 `;
+
+const Suggestions = styled(Suggestion)`
+width:22%`;
 
 
 
