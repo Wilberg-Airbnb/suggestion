@@ -102,7 +102,7 @@ const Superhost = styled.div`
     border-radius:5px;
     border-width: thin;
     margin-right:5px;
-    width:20%;
+    width:25%;
     text-align:center;
     font-size:0.5em;
     height:100%;
@@ -163,7 +163,7 @@ const RoomInfo = styled.div`
 #suggestions & {
     overflow:hidden;
     text-overflow:ellipsis;
-    width:${({superhost})=>superhost? `80%`: `100%`};
+    width:${({superhost})=>superhost? `75%`: `100%`};
     white-space:nowrap;
     font-size:1em;
     color:#A0A0A0;
