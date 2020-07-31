@@ -51,6 +51,23 @@ const ImageBox = styled.div`
 
 `;
 
+
+const Image = styled.img`
+#suggestions & {
+    width:100%;
+    height:100%;
+    position:relative:
+    top:0;
+    bottom:0;
+    left:0;
+    right:0;
+    max-width:100%;
+    max-height:100%;
+    object-fit:cover;
+
+}
+`;
+
 const Superhost = styled.div`
 #suggestions & {
     background:white;
@@ -68,19 +85,6 @@ const Superhost = styled.div`
 }
 `;
 
-const Image = styled.img`
-#suggestions & {
-    width:100%;
-    height:100%;
-    position:relative:
-    top:0;
-    bottom:0;
-    left:0;
-    right:0;
-    max-width:100%;
-    object-fit:cover;
-}
-`;
 
 
 const SuggestionContainer = styled.div`
@@ -104,7 +108,7 @@ const RoomType = styled.div`
 
 const RoomName=styled.div`
 #suggestions & {
-    margin-top:0.7rem;
+    margin-top:0.5rem;
     overflow:hidden;
     text-overflow:ellipsis;
     white-space:nowrap;
@@ -115,7 +119,8 @@ const RoomName=styled.div`
 
 const RoomPrice = styled.div`
 #suggestions & {
-    margin-top:0.7rem;
+    margin-top:0.5rem;
+    font-size:1.6vmin;
 }
 `;
 
@@ -125,6 +130,7 @@ const Reviews = styled.div`
     text-align:right;
     font-size:1.6vmin;
     height:100%;
+    align-items:center;
 }
  `;
 
@@ -142,9 +148,10 @@ const Star = styled.div`
   background: #FF385C;
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   display: inline-block;
-  height: 1.5vmin;
-  width: 1.5vmin;
+  height: 1.6vmin;
+  width: 1.6vmin;
   margin-right:0.5vmin;
+  align-items:center;
 }
 }
 `;
@@ -365,12 +372,12 @@ class Suggestion extends React.Component {
                     }
 
                     
-
-                    <Reviews className="suggestionReviews"><Star></Star>{this.state.average} ({this.state.reviews.length})</Reviews>
+{/* {this.state.average} ({this.state.reviews.length}) */}
+                <Reviews className="suggestionReviews"><Star></Star>{`${this.state.average} (${this.state.reviews.length})`}</Reviews>
                     
                 </RoomType>
                 <RoomName>{this.state.placeName}</RoomName>
-                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block"}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
+                <RoomPrice><p style={{fontWeight:"bold", display:"inline-block", fontSize:'1.6vmin'}}>${Math.floor(this.state.price)}</p> / night</RoomPrice>
 
                 
             </SuggestionContainer>
