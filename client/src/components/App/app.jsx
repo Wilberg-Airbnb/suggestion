@@ -10,7 +10,7 @@ const AppContainer = styled.div`
 #suggestions & {
   background-color: rgb(247,247,247);  
   width:100%;
-  height:400px;
+  height:450px;
 }
 `;
 
@@ -20,7 +20,7 @@ const NavContainer = styled.div`
   justify-content:space-between;
   margin-bottom:1rem;
   width:100%;
-  height:20%;
+  height:10%;
 }
 `;
 
@@ -30,7 +30,7 @@ const SuggestionsContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2.8%;
   width:100%;
-  height:80%;
+  height:90%;
 }
 `;
 
