@@ -129,6 +129,7 @@ const RoomName=styled.div`
     text-overflow:ellipsis;
     white-space:nowrap;
     font-size:1em;
+    width:95%;
 
 }
 `;
