@@ -5,6 +5,19 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 
 import axios from 'axios';
 
+const Star = styled.div`
+#suggestions & {
+  background: #FF385C;
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  display: inline-block;
+  height: 1.6vmin;
+  width: 1.6vmin;
+  margin-right:0.5vmin;
+  align-items:center;
+}
+}
+`;
+
 const Circle = styled.div`
 #suggestions & {
     background:#F0F0F0;
@@ -56,7 +69,7 @@ const SuggestionContainer = styled.div`
 
 const ImageBox = styled.div`
 #suggestions & {
-    height:25vmin;
+    height:70%;
     position:relative;
     width:100%;
 }
@@ -105,6 +118,7 @@ const RoomType = styled.div`
     margin-top:0.7rem;
     width:100%;
     align-items:center;
+
 }
 `;
 
@@ -115,7 +129,7 @@ const RoomName=styled.div`
     text-overflow:ellipsis;
     white-space:nowrap;
     font-size:1.6vmin;
-    width:100%;
+
 }
 `;
 
@@ -141,22 +155,9 @@ const RoomDescription= styled.div`
     display:flex;
     justify-content:flex-start;
     width:75%;
-    height:1.8vmin;
 }
 `;
 
-const Star = styled.div`
-#suggestions & {
-  background: #FF385C;
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  display: inline-block;
-  height: 1.6vmin;
-  width: 1.6vmin;
-  margin-right:0.5vmin;
-  align-items:center;
-}
-}
-`;
 
 const RoomInfo = styled.div`
 #suggestions & {
