@@ -45,10 +45,11 @@ const Heartsign= styled(FavoriteIcon)`
 const SuggestionContainer = styled.div`
 #suggestions & {
 
-    width:28.125vmin;
+    width:100%;
     &:hover{
         cursor:pointer;
     };
+    height:100%;
  
 }
 `;

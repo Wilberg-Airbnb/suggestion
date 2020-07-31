@@ -28,6 +28,7 @@ const SuggestionsContainer = styled.div`
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 2.8%;
   width:100%;
+  height:25vmin;
 
 }
 `;
