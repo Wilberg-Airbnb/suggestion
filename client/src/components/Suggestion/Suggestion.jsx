@@ -42,6 +42,17 @@ const Heartsign= styled(FavoriteIcon)`
 
 // rgb(255, 56, 92)
 
+const SuggestionContainer = styled.div`
+#suggestions & {
+
+    width:100%;
+    &:hover{
+        cursor:pointer;
+    };
+ 
+}
+`;
+
 const ImageBox = styled.div`
 #suggestions & {
     height:25vmin;
@@ -85,16 +96,6 @@ const Superhost = styled.div`
 }
 `;
 
-
-
-const SuggestionContainer = styled.div`
-#suggestions & {
-    &:hover{
-        cursor:pointer;
-    }
- width:100%;
-}
-`;
 
 const RoomType = styled.div`
 #suggestions & {
