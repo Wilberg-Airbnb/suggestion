@@ -27,7 +27,7 @@ const Circle = styled.div`
     top:3%;
     right:3%;
     width:11%;
-    height:11%;
+    height:16%;
     align-items: center;
     justify-content:center;
 
@@ -361,7 +361,7 @@ class Suggestion extends React.Component {
         return (
             <SuggestionContainer index = {index}>
 
-                <ImageBox className="suggestionimgbox" onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Image src={this.state.photoUrl} alt="picture"></Image><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
+                <ImageBox className="suggestionimgbox" style={{backgroundImage:`url('${this.state.photoUrl}')`,backgroundSize:'contain'}} onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}><Circle className="circleicon" hover={this.state.hover?1:0}><Heartsign id="hearticon" className={`heartsignicon${this.props.suggestion.listingId}`} onClick={this.addFavorite} favorite={this.state.favorite?1:0} border={1} stroke={"black"} strokeWidth={0.8} hover ={this.state.hover?1:0}/></Circle></ImageBox>
                 <RoomType> 
                     {this.state.superhost?
                     <RoomDescription>
