@@ -69,7 +69,7 @@ const SuggestionContainer = styled.div`
 
 const ImageBox = styled.div`
 #suggestions & {
-    height:70%;
+    height:50%;
     position:relative;
     width:100%;
 }
