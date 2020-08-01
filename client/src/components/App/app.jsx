@@ -92,6 +92,22 @@ class App extends React.Component {
     }
 
     this.handleClick = this.handleClick.bind(this);
+    this.addFavorite= this.addFavorite.bind(this);
+
+  }
+
+  addFavorite(index){
+    var index= Number(index);
+
+    let {suggestions} = {...this.state};
+    var item = suggestions.findIndex((cur,idx) =>{return idx === index})
+
+
+
+    suggestions[item]['favorite'] = !suggestions[item]['favorite'];
+    this.setState({
+      suggestions:suggestions
+    })
 
   }
 
@@ -121,7 +137,7 @@ class App extends React.Component {
     axios.get(`http://52.14.214.44:8081/api/suggestions/${this.state.listingId}`)
       .then(res =>{
       this.setState({
-        suggestions: res.data
+        suggestions: res.data.map(obj =>({...obj, favorite:false}))
       })
       })
       .catch(err =>{
@@ -155,7 +171,16 @@ class App extends React.Component {
 
             {
               currentSuggestions.map((suggestion,key)=>{
-                return <Suggestion className = "suggestionComponent" suggestion ={suggestion} index = {key} key={key}></Suggestion>
+                
+                if(this.state.currentPage === 1){
+                  key = key
+                }else if(this.state.currentPage === 2){
+                  key = key+4;
+                } else if(this.state.currentPage ===3){
+                  key = key+8;
+                }
+
+                return <Suggestion className = "suggestionComponent" favoriteClick = {this.addFavorite} favoriteSuggestion={this.state.suggestions} suggestion ={suggestion} index = {key} key={key}></Suggestion>
               })
             }
 
