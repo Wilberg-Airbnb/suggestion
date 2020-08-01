@@ -99,13 +99,13 @@ const Superhost = styled.div`
     background:white;
     border-style:solid;
     border-color:black;
-    padding:4px;
+    padding:2px 4px;
     border-radius:6px;
     border-width: thin;
     margin-right:5px;
     width:50%;
     text-align:center;
-    font-size:0.9em;
+    font-size:0.85em;
     height:100%;
     align-items:center;
 }
@@ -147,7 +147,7 @@ const RoomPrice = styled.div`
 
 const Reviews = styled.div`
 #suggestions & {
-    width:35%;
+    width:38%;
     text-align:right;
     font-size:1.2em;
     height:100%;
@@ -162,7 +162,7 @@ const RoomDescription= styled.div`
 #suggestions & {
     display:flex;
     justify-content:flex-start;
-    width:65%;
+    width:62%;
 }
 `;
 
