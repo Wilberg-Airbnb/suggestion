@@ -88,11 +88,12 @@ class App extends React.Component {
       suggestions:[],
       currentPage:1,
       todosPerPage:4,
-      currentImageIndex: 0
+      currentImageIndex: 0,
+      favorite:false
     }
 
     this.handleClick = this.handleClick.bind(this);
-
+    this.addFavorite = this.addFavorite.bind(this);
   }
 
   handleClick(direction){
@@ -111,6 +112,12 @@ class App extends React.Component {
       }    
     }
   }
+
+  addFavorite(){
+    this.setState(prevState=>({
+        favorite:!prevState.favorite
+    }))
+}
 
   shouldComponentUpdate(){
     return true;
@@ -155,7 +162,7 @@ class App extends React.Component {
 
             {
               currentSuggestions.map((suggestion,key)=>{
-                return <Suggestion className = "suggestionComponent" suggestion ={suggestion} index = {key} key={key}></Suggestion>
+                return <Suggestion className = "suggestionComponent" favorite={this.state.favorite}addFavorite= {this.addFavorite} suggestion ={suggestion} index = {key} key={key}></Suggestion>
               })
             }
 
