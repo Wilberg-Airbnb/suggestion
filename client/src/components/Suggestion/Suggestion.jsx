@@ -346,6 +346,12 @@ class Suggestion extends React.Component {
         })
     }
 
+    addFavorite(){
+        this.setState(prevState=>({
+            favorite:!prevState.favorite
+        }))
+    }
+
     getAverage(){
         axios.get(`http://52.14.214.44:8080/api/reviews/${this.props.suggestion.listingId}?type=review`)
             .then(res =>{
